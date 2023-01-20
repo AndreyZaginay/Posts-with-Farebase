@@ -1,0 +1,21 @@
+<form [formGroup]="postForm">
+  <mat-form-field appearance="fill">
+    <mat-label>Author</mat-label>
+    <input formControlName="author" matInput />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Title</mat-label>
+    <input formControlName="title" matInput />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Content</mat-label>
+    <input formControlName="content" matInput />
+  </mat-form-field>
+  <div class="buttons">
+    <button mat-raised-button [disabled]="!postForm.dirty" (click)="editPost()">
+      Edit
+    </button>
+    <button mat-raised-button (click)="deletePost()">Delete</button>
+    <button mat-raised-button routerLink="">Back</button>
+  </div>
+</form>
