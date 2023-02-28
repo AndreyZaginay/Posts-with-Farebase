@@ -4,7 +4,16 @@ import {
   DocumentData,
   collection,
 } from '@firebase/firestore';
-import { addDoc, collectionData, deleteDoc, doc, docData, DocumentReference, Firestore, updateDoc } from '@angular/fire/firestore';
+import { 
+  addDoc,
+  collectionData, 
+  deleteDoc, 
+  doc, 
+  docData, 
+  DocumentReference, 
+  Firestore, 
+  updateDoc 
+} from '@angular/fire/firestore';
 import { from, Observable } from 'rxjs';
 
 import { Post } from '../models/Post';
@@ -13,14 +22,14 @@ import { Post } from '../models/Post';
   providedIn: 'root'
 })
 export class FirestoreService {
-  postsCollection: CollectionReference<DocumentData> = collection(this.firestore, 'Posts');
+    postsCollection: CollectionReference<DocumentData> = collection(this.firestore, 'Posts');
 
   constructor(private readonly firestore: Firestore ) {}
 
-  getAll(): Observable<Post[]>{
+  getAll(): Observable<Post[]> {
     return collectionData(this.postsCollection, {
       idField: 'id',
-    }) as Observable<Post[]>
+    }) as Observable<Post[]>;
   }
 
   getOne(id: string): Observable<Post> {
@@ -29,7 +38,7 @@ export class FirestoreService {
   }
 
   create(post: Post): Observable<DocumentReference<DocumentData>> {
-    return from(addDoc(this.postsCollection, post)) 
+    return from(addDoc(this.postsCollection, post));
   }
 
   update(post: Post): Observable<void> {
@@ -41,5 +50,6 @@ export class FirestoreService {
     const postDocumentReference = doc(this.firestore, `Posts/${id}`);
     return from(deleteDoc(postDocumentReference));
   }
+
 
 }

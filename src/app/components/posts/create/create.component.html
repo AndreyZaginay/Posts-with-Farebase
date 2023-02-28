@@ -6,11 +6,23 @@
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Title</mat-label>
-    <input formControlName="title" matInput />
+    <input formControlName="title" matInput name="title" />
+    <mat-error *ngIf="postFormTitle.hasError('required')">
+      Title is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="postFormTitle.hasError('minlength')">
+      Title is too <strong>short</strong>
+    </mat-error>
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Content</mat-label>
     <input formControlName="content" matInput />
+    <mat-error *ngIf="postFormContent.hasError('required')">
+      Content is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="postFormContent.hasError('maxlength')">
+      Content is too <strong>long</strong>
+    </mat-error>
   </mat-form-field>
   <div class="buttons">
     <button
